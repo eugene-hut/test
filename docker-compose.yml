@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "4K8"
+    ports:
+      - "8001:8000"
+    restart: always
+    command: "uvicorn main:app --host 0.0.0.0 --port 8000"
+    volumes:
+      - .:/app
+
+  nginx:
+    container_name: "4K8-nginx"
+    image: nginx:1.27-alpine3.19-slim
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./log:/var/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    restart: always
