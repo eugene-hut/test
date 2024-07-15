@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.post(
-    path="/replace_photo/",
+    path="/replace-photo/",
     summary="Замена фото",
 )
 async def replace_photo(data: Annotated[ReplacePhoto, Depends()]):
@@ -36,7 +36,7 @@ async def replace_photo(data: Annotated[ReplacePhoto, Depends()]):
 
 
 @router.post(
-    path="/duplicate_rows",
+    path="/duplicate-rows",
     summary="Дублирование строк",
 )
 async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
