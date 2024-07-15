@@ -30,7 +30,7 @@ async def replace_photo(data: Annotated[ReplacePhoto, Depends()]):
                     new_value += ";" + cell_value[-1]
                 cell.value = new_value
         wb.save(file_path)
-        return FileResponse(file_path, filename=data.file.filename)
+        return FileResponse(file_path, filename=data.file.filename, media_type="multipart/form-data")
     except Exception as e:
         return {"error": str(e)}
 
@@ -59,6 +59,6 @@ async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
         for cell in sheet_result["C"]:
             cell.number_format = FORMAT_NUMBER
         wb.save(file_path)
-        return FileResponse(file_path, filename=data.file.filename)
+        return FileResponse(file_path, filename=data.file.filename, media_type="multipart/form-data")
     except Exception as e:
         return {"error": str(e)}
