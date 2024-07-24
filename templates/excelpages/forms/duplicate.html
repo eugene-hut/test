@@ -1,0 +1,36 @@
+{% extends "excelpages/forms/base-form.html" %}
+
+{% block title %}Дублирование строк{% endblock %}
+{% block description%}Дублирование строк{% endblock %}
+
+
+{% block fields %}
+    <div class="mb-3 row">
+        <label for="quantity" class="col-sm-3 col-form-label">Количество дубликатов:</label>
+        <div class="col-sm-9">
+            <input type="number" id="quantity" name="quantity" min="2" value="3" class="form-control">
+        </div>
+    </div>
+{% endblock fields %}
+
+
+<!--<form action={{ request.url }} method="post" enctype="multipart/form-data" style="justify-content: center;">-->
+<!--            <div class="mb-3 row">-->
+<!--                <label for="file" class="col-sm-3 col-form-label">Выберите файл Excel:</label>-->
+<!--                <div class="col-sm-9">-->
+<!--                    <input type="file" id="file" name="file" class="form-control-file" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="mb-3 row">-->
+<!--                <label for="quantity" class="col-sm-3 col-form-label">Количество дубликатов:</label>-->
+<!--                <div class="col-sm-9">-->
+<!--                    <input type="number" id="quantity" name="quantity" min="2" value="3" class="form-control">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        {% if not link %}-->
+<!--            <button type="submit" class="btn btn-primary" style="width: 50%; margin: 0 auto; display: flex;">Обработать</button>-->
+<!--        {% endif %}-->
+<!--        {% if link %}-->
+<!--            <button onclick="window.location.href='{{ link }}'" class="btn btn-success" style="width: 50%; margin: 0 auto; display: flex;">Скачать файл</button>-->
+<!--        {% endif %}-->
+<!--</form>-->

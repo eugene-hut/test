@@ -1,4 +1,6 @@
-from fastapi import UploadFile
+from typing import Annotated
+
+from fastapi import UploadFile, Form
 from pydantic import BaseModel, ConfigDict, field_validator
 
 
@@ -24,4 +26,4 @@ class ReplacePhoto(Excel):
 
 
 class Duplicate(Excel):
-    quantity: int
+    quantity: Annotated[int, Form(default=1)]

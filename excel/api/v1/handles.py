@@ -1,6 +1,5 @@
 from typing import Annotated
 
-import openpyxl as opx
 from openpyxl.styles.numbers import FORMAT_NUMBER
 from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
@@ -18,7 +17,9 @@ router = APIRouter(
     path="/replace-photo/",
     summary="Замена фото",
 )
-async def replace_photo(data: Annotated[ReplacePhoto, Depends()]):
+async def replace_photo(
+    data: Annotated[ReplacePhoto, Depends()],
+):
     try:
         wb, file_path = get_workbook_and_path(data)
         sheet = wb.active
@@ -30,13 +31,17 @@ async def replace_photo(data: Annotated[ReplacePhoto, Depends()]):
                     new_value += ";" + cell_value[-1]
                 cell.value = new_value
         wb.save(file_path)
-        return FileResponse(file_path, filename=data.file.filename, media_type="multipart/form-data")
+        return FileResponse(
+            file_path,
+            filename=data.file.filename,
+            media_type="multipart/form-data",
+        )
     except Exception as e:
         return {"error": str(e)}
 
 
 @router.post(
-    path="/duplicate-rows",
+    path="/duplicate",
     summary="Дублирование строк",
 )
 async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
@@ -53,12 +58,16 @@ async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
             row_orig[0] = row
             if row_orig is None:
                 continue
-            for i in range(data.quantity):
+            for _ in range(data.quantity):
                 sheet_result.append(row_orig)
 
         for cell in sheet_result["C"]:
             cell.number_format = FORMAT_NUMBER
         wb.save(file_path)
-        return FileResponse(file_path, filename=data.file.filename, media_type="multipart/form-data")
+        return FileResponse(
+            file_path,
+            filename=data.file.filename,
+            media_type="multipart/form-data",
+        )
     except Exception as e:
         return {"error": str(e)}

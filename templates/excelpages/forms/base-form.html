@@ -1,0 +1,32 @@
+{% extends "excelpages/excel.html" %}
+
+{% block content %}
+<div class="custom-form mt-0">
+    <h1 class="text-center">{% block title %}{% endblock %}</h1>
+    <h3 class="text-center">{% block description %}{% endblock %}</h3>
+
+    <form action="{{ request.url }}" method="post" enctype="multipart/form-data" style="justify-content: center;">
+        <div class="mb-3 row">
+            <label for="file" class="col-sm-3 col-form-label">Выберите файл:</label>
+            <div class="col-sm-9">
+                <input type="file" id="file" name="file" class="form-control-file" required>
+            </div>
+        </div>
+
+    {% block fields %}
+    {% endblock fields %}
+
+    {% if not link %}
+        <button type="submit" class="btn btn-primary" style="width: 50%; margin: 0 auto; display: flex;">Обработать</button>
+    {% endif %}
+
+    {% if link %}
+        <button  onclick="window.location.href='{{ link }}'" class="btn btn-success" style="width: 50%; margin: 0 auto; display: flex;">Скачать файл</button>
+    {% endif %}
+
+
+</form>
+</div>
+
+
+{% endblock %}

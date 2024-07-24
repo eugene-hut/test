@@ -1,0 +1,14 @@
+{% extends "excelpages/forms/base-form.html" %}
+
+{% block title %}Замена фото{% endblock %}
+{% block description%}Замена фото{% endblock %}
+
+
+{% block fields %}
+    <div class="mb-3 row">
+        <label for="text" class="col-sm-3 col-form-label">Строка для замены:</label>
+        <div class="col-sm-9">
+            <input type="text" id="text" name="text" class="form-control">
+        </div>
+    </div>
+{% endblock fields %}
