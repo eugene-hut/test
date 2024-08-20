@@ -53,7 +53,6 @@ async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
         for row, row_orig in enumerate(sheet_original.iter_rows(values_only=True), 1):
             row_orig = list(row_orig)
             row_orig[0] = row
-            print(row_orig)
 
             for _ in range(data.quantity):
                 sheet_result.append(row_orig)
