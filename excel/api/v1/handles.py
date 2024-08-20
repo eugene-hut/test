@@ -51,13 +51,10 @@ async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
         sheet_result = wb.create_sheet(title=f"Result-{sheet_original.title}")
 
         for row, row_orig in enumerate(sheet_original.iter_rows(values_only=True), 1):
-            if row_orig[0] is not None:
-                sheet_result.append(row_orig)
-                continue
             row_orig = list(row_orig)
             row_orig[0] = row
-            if row_orig is None:
-                continue
+            print(row_orig)
+
             for _ in range(data.quantity):
                 sheet_result.append(row_orig)
 

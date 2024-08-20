@@ -26,4 +26,4 @@ class ReplacePhoto(Excel):
 
 
 class Duplicate(Excel):
-    quantity: Annotated[int, Form(default=1)]
+    quantity: Annotated[int, Form(default=3, gt=0)]
