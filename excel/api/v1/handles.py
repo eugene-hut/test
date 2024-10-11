@@ -25,7 +25,7 @@ async def replace_photo(
         sheet = wb.active
         for row in sheet.rows:
             for cell in row:
-                if cell not isistance(cell.value, str):
+                if not isinstance(cell.value, str):
                     continue
                 cell_value = cell.value.split(";")
                 new_value = cell_value[0] + data.text
