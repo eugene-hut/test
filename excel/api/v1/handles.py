@@ -27,6 +27,7 @@ async def replace_photo(
             for cell in row:
                 if not isinstance(cell.value, str):
                     cell.value = "!!!!!!!!!!"
+                    continue
                 cell_value = cell.value.split(";")
                 new_value = cell_value[0] + data.text
                 if cell_value[-1].endswith(".mp4") or cell_value[-1].endswith(".m3u8"):
