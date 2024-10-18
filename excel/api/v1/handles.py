@@ -55,7 +55,7 @@ async def duplicate_rows(data: Annotated[Duplicate, Depends()]):
 
         for row, row_orig in enumerate(sheet_original.iter_rows(values_only=True), 1):
             row_orig = list(row_orig)
-            if row[0] is None:
+            if row[1] is None:
                 continue
             row_orig[0] = row
 
